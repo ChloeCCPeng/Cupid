@@ -1,2 +1,2 @@
 # Phase-3-Project
-Ruby and Sinatra project
+Ruby and Sinatra project - Dating Application
