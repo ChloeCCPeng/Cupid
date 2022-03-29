@@ -27,15 +27,6 @@ class ApplicationController < Sinatra::Base
         match.to_json
     end
 
-    get '/unmatched/' do
-        users = User.all
-        filtered_users = users.filter do |user|
-            User.contain(user)
-        end
-        users.to_json
-    
-      end
-  
     post '/users/' do
         users = User.create(
           name: params[:name],
