@@ -73,10 +73,10 @@ class ApplicationController < Sinatra::Base
       user.to_json
     end
 
-    delete '/matchs/:id' do
-        match = Match.find(params[:id])
-        match.destroy
-        match.to_json
+    delete '/users/:id' do
+        user = User.find(params[:id])
+        user.destroy
+        user.to_json
     end
 
   end
