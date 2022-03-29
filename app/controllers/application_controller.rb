@@ -65,11 +65,15 @@ class ApplicationController < Sinatra::Base
         puts @@user_id
     end
 
-    get '/likers/' do
+    get '/users/' do
         if defined?(@@user_id)
-            user = User.find(@@user_id)
-            users = user.likers
-            users.to_json(include: [:likers, :liked])
+            logged_in_user = User.find(@@user_id)
+            all_users = User.all
+            liked = logged_in_user.liked
+            filtered_users = all_users.select do |user|
+                user != logged_in_user || !liked.include?(user)
+            end
+            filtered_users.to_json(include: [:likers, :liked])
         end
       end
 
