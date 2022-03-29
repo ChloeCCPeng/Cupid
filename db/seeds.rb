@@ -4,7 +4,7 @@ Match.destroy_all
 
 puts "Creating users..."
 100.times do
-    User.create(name: Faker::Name.male_first_name, bio: Faker::Quote.matz, hobby: Faker::Hobby.activity, preference: Faker::Gender.binary_type, age: rand(19..40), picture: "https://nerdiertides.files.wordpress.com/2018/04/id3-hnry-sub-01.png", location: Faker::Address.state)
+    User.create(username: Faker::Artist.name, password: Faker::Artist.name, name: Faker::Name.male_first_name, bio: Faker::Quote.matz, hobby: Faker::Hobby.activity, preference: Faker::Gender.binary_type, age: rand(19..40), picture: "https://nerdiertides.files.wordpress.com/2018/04/id3-hnry-sub-01.png", location: Faker::Address.state)
 end
 
 puts "Creating matches..."

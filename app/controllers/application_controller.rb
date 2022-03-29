@@ -25,9 +25,38 @@ class ApplicationController < Sinatra::Base
         match = Match.find(params[:id])
         match.to_json
     end
+
+    get '/unmatched/' do
+        users = User.all
+        filtered_users = users.filter do |user|
+            User.contain(user)
+        end
+        users.to_json
+    
+      end
   
-    get '/user' do
-      '<h2>Hello <em>World</em>!</h2>'
+    post '/users/' do
+        users = User.create(
+          name: params[:name],
+          bio: params[:bio],
+          hobby: params[:hobby],
+          preference: params[:preference],
+          age: params[:age],
+          picture: params[:picture],
+          location: params[:location],
+        )
+        users.to_json
+      end
+
+      post '/login' do
+        user = User.find_by(:username => params[:username])
+        if user && user.authenticate(params[:password])
+            puts 'Success'
+            session[:user_id] = user.id
+            redirect to '/'
+        else
+            puts 'Fail'
+        end
     end
 
   end
