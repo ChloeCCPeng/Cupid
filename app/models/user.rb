@@ -13,5 +13,7 @@ class User < ActiveRecord::Base
     has_many :liking_users, foreign_key: :liked_id, class_name: "Match"
     has_many :likers, through: :liking_users
 
-
+    def update_user
+        
+    end
 end
