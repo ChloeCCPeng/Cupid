@@ -19,6 +19,26 @@ class ApplicationController < Sinatra::Base
     user = User.find(params[:id])
     user.to_json
 
+    patch '/user/:id' do
+      user = User.find(params[:id])
+      user.update(
+        name: params[:name],
+        bio: params[:bio],
+        hobby: params[:hobby],
+        preference: params[:preference],
+        age: params[:age],
+        picture: params[:picture],
+        location: params[:location],
+      )
+      user.to_json
+    end
+
+    delete '/matchs/:id' do
+        match = Match.find(params[:id])
+        match.destroy
+        match.to_json
+    end
+
   end
 
   get '/match/:id' do
