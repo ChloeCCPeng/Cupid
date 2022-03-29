@@ -4,12 +4,6 @@ class ApplicationController < Sinatra::Base
       set :default_content_type, 'application/json'
 
 
-  get '/users/' do
-    users = User.all
-    users.to_json(include: [:likers, :liked])
-
-  end
-
   get '/matches/' do
     users = Match.all
     users.to_json
@@ -70,6 +64,14 @@ class ApplicationController < Sinatra::Base
     get '/current-user/' do
         puts @@user_id
     end
+
+    get '/likers/' do
+        if defined?(@@user_id)
+            user = User.find(@@user_id)
+            users = user.likers
+            users.to_json(include: [:likers, :liked])
+        end
+      end
 
 
     #update user info
