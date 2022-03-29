@@ -1,12 +1,10 @@
-ENV["RACK_ENV"] ||= "development"
+# This is an _environment variable_ that is used by some of the Rake tasks to determine
+# if our application is running locally in development, in a test environment, or in production
+ENV['RACK_ENV'] ||= "development"
 
+# Require in Gems
 require 'bundler/setup'
-Bundler.require(:default, ENV["RACK_ENV"])
+Bundler.require(:default, ENV['RACK_ENV'])
 
-# Without this code, ActiveRecord thinks the singular of "Freebies" is "Freeby"
-# https://api.rubyonrails.org/classes/ActiveSupport/Inflector/Inflections.html#method-i-irregular
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'freebie', 'freebies'
-end
-
-require_all 'app/models'
+# Require in all files in 'app' directory
+require_all 'app'
