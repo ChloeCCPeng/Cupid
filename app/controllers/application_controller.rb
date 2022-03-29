@@ -3,6 +3,7 @@ class ApplicationController < Sinatra::Base
       # Add this line to set the Content-Type header for all responses
       set :default_content_type, 'application/json'
 
+
   get '/users/' do
     users = User.all
     users.to_json(include: [:likers, :liked])
@@ -51,12 +52,20 @@ class ApplicationController < Sinatra::Base
       post '/login' do
         user = User.find_by(:username => params[:username])
         if user && user.authenticate(params[:password])
-            puts 'Success'
             session[:user_id] = user.id
-            redirect to '/'
+            @@user_id = session[:user_id]
+            puts 'Success'
         else
             puts 'Fail'
         end
+    end
+
+    post '/logout' do
+        @@user_id = nil
+    end
+
+    get '/current-user/' do
+        puts @@user_id
     end
 
   end
