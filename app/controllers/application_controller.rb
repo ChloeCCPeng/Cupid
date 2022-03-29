@@ -15,48 +15,44 @@ class ApplicationController < Sinatra::Base
 
   end
 
-    get '/user/:id' do
-      user = User.find(params[:id])
-      user.to_json
-
-    end
-  
-    get '/match/:id' do
-        match = Match.find(params[:id])
-        match.to_json
-    end
-
-    get '/unmatched/' do
-        users = User.all
-        filtered_users = users.filter do |user|
-            User.contain(user)
-        end
-        users.to_json
-    
-      end
-  
-    post '/users/' do
-        users = User.create(
-          name: params[:name],
-          bio: params[:bio],
-          hobby: params[:hobby],
-          preference: params[:preference],
-          age: params[:age],
-          picture: params[:picture],
-          location: params[:location],
-        )
-        users.to_json
-      end
-
-      post '/login' do
-        user = User.find_by(:username => params[:username])
-        if user && user.authenticate(params[:password])
-            puts 'Success'
-            session[:user_id] = user.id
-            redirect to '/'
-        else
-            puts 'Fail'
-        end
-    end
+  get '/user/:id' do
+    user = User.find(params[:id])
+    user.to_json
 
   end
+
+  get '/match/:id' do
+      match = Match.find(params[:id])
+      match.to_json
+  end
+
+  #update user info
+  patch '/user/:id' do
+    user = User.find(params[:id])
+    user.update(
+      name: params[:name],
+      bio: params[:bio],
+      hobby: params[:hobby],
+      preference: params[:preference],
+      age: params[:age],
+      picture: params[:picture],
+      location: params[:location]
+    )
+    user.to_json
+  end
+
+  # delete user
+  delete '/users/:id' do
+    user = User.find(params[:id])
+    user.destroy
+    user.to_json
+  end
+
+  # delete matches
+  delete '/matches/:id' do
+      match = Match.find(params[:id])
+      match.destroy
+      match.to_json
+  end
+
+end
