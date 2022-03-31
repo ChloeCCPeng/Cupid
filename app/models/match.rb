@@ -7,9 +7,6 @@ class Match < ActiveRecord::Base
     def unmatch(id)
         match = Match.find(id)
         match.destroy
-
-    def delete_match
-        
-
     end
+        
 end

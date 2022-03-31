@@ -11,9 +11,17 @@ class ApplicationController < Sinatra::Base
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
+    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
+    response.headers["Access-Control-Request-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
+    response.headers['Access-Control-Max-Age'] = '86400'
+
   end
 
+  configure do
     enable :sessions
+  end
 
 
       # Add this line to set the Content-Type header for all responses
@@ -26,9 +34,29 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
+  get '/match/:id' do
+    match = Match.find(params[:id])
+    match.to_json
+    end
+
   get '/user/:id' do
     user = User.find(params[:id])
     user.to_json
+  end
+
+    patch '/user/:id' do 
+      user = User.find(params[:id])
+      user.update(
+        name: params[:name],
+        bio: params[:bio],
+        hobby: params[:hobby],
+        preference: params[:preference],
+        age: params[:age],
+        picture: params[:picture],
+        location: params[:location],
+      )
+      user.to_json
+    end
 
     post '/users/' do
       # binding.pry
@@ -50,7 +78,7 @@ class ApplicationController < Sinatra::Base
         @user = User.find_by(:username => params[:username])
         if @user && @user.authenticate(params[:password])
             session[:current_user_id] = @user.id
-            response = {response: 'Success'}
+            response = {response: 'Success', current_user_id: @user.id}
             response.to_json
         else
           response = {response: 'Fail'}
@@ -58,9 +86,8 @@ class ApplicationController < Sinatra::Base
         end
     end
 
-    get '/profile/' do
-      binding.pry
-      profile = User.find_by_id(session[:current_user_id])
+    get '/profile/:id' do
+      profile = User.find_by_id(params[:id])
       profile.to_json
     end
 
@@ -68,9 +95,9 @@ class ApplicationController < Sinatra::Base
         @@user_id = nil
     end
 
-    get '/current-user/' do
-        puts @@user_id
-    end
+    # get '/current-user/' do
+    #     puts @@user_id
+    # end
 
     get '/users/' do
         if defined?(@@user_id)
@@ -82,6 +109,7 @@ class ApplicationController < Sinatra::Base
             end
             filtered_users.to_json(include: [:likers, :liked])
         end
+        binding.pry
       end
 
 
@@ -99,27 +127,7 @@ class ApplicationController < Sinatra::Base
         )
     user.to_json
   end
-
-  get '/match/:id' do
-      match = Match.find(params[:id])
-      match.to_json
-  end
-
-  #update user info
-  patch '/user/:id' do
-    user = User.find(params[:id])
-    user.update(
-      name: params[:name],
-      bio: params[:bio],
-      hobby: params[:hobby],
-      preference: params[:preference],
-      age: params[:age],
-      picture: params[:picture],
-      location: params[:location]
-    )
-    user.to_json
-  end
-
+  
   # delete user
   delete '/users/:id' do
     user = User.find(params[:id])
@@ -127,11 +135,18 @@ class ApplicationController < Sinatra::Base
     user.to_json
   end
 
-  # delete matches
-  delete '/matches/:id' do
-      match = Match.find(params[:id])
-      match.destroy
-      match.to_json
+  # Need this for CORS
+  options "*" do
+    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
+    response.headers["Access-Control-Request-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
+    response.headers['Access-Control-Max-Age'] = '86400'
+
+
+    200
   end
 
 end

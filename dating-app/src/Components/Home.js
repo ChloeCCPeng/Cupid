@@ -7,7 +7,10 @@ function Home() {
   const [userData, setUserData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:9292/profile/', {
+
+    const userID = localStorage.getItem('User ID')
+
+    fetch(`http://localhost:9292/profile/${userID}`, {
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
