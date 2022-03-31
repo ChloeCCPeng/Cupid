@@ -20,3 +20,10 @@ img.back-arrow {
 img.back-arrow:hover {
   transform: scale(.93)
 }
+
+.item-scale {
+  transition: 0.3s;
+}
+.item-scale:hover {
+  transform: scale(.93)
+}
