@@ -13,6 +13,8 @@ class ApplicationController < Sinatra::Base
     response.headers['Access-Control-Allow-Credentials'] = 'true'
   end
 
+    enable :sessions
+
 
       # Add this line to set the Content-Type header for all responses
       set :default_content_type, 'application/json'
@@ -65,16 +67,21 @@ class ApplicationController < Sinatra::Base
       end
 
       post '/login' do
-        user = User.find_by(:username => params[:username])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
-            @@user_id = session[:user_id]
+        @user = User.find_by(:username => params[:username])
+        if @user && @user.authenticate(params[:password])
+            session[:current_user_id] = @user.id
             response = {response: 'Success'}
             response.to_json
         else
           response = {response: 'Fail'}
           response.to_json
         end
+    end
+
+    get '/profile/' do
+      binding.pry
+      profile = User.find_by_id(session[:current_user_id])
+      profile.to_json
     end
 
     post '/logout' do
