@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
+import CreateAccount from './CreateAccount'
+
 
 function App() {
 
@@ -55,6 +57,9 @@ function App() {
       <Switch>
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
+        </Route>
+        <Route exact path="/create-account">
+          <CreateAccount />
         </Route>
         <Route exact path="/">
           {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
