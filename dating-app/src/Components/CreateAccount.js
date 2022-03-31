@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import BackArrow from '../assets/Downward Arrow.svg'
 
 function CreateAccount() {
 
@@ -30,11 +32,14 @@ function CreateAccount() {
           .then(resp => resp.json())
           .then(result => console.log(result))
 
-    }
+          window.alert(`Account Created Successfully!`)
+
+          }
 
 
   return (
       <div className="container mx-auto">
+          <Link to="/login"><img src={BackArrow} alt="back arrow" className="back-arrow" /></Link>
         <div className="my-8">
             <h1 className="text-center mb-8">Create an Account</h1>
             <form className="flex flex-col align-start text-center max-w-lg m-auto" onSubmit={(e) => createAccount(e)}>
