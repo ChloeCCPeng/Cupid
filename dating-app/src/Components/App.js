@@ -10,6 +10,7 @@ import Profile from './Profile'
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [profile, setProfile] = useState("")
 
   useEffect(() => {
     setIsLoggedIn(window.localStorage.getItem('Log In Status'));
@@ -51,6 +52,14 @@ function App() {
       }
       
     }
+
+    useEffect(() => {
+      fetch('http://localhost:9292/profile')
+      .then((response) => response.json())
+      .then((data) => setProfile(data))
+    },[]);
+  
+    // function profileRender ()
 
   return (
     <Router>
