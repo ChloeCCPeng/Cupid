@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
   before do
     response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
   end
 
 
@@ -64,9 +65,11 @@ class ApplicationController < Sinatra::Base
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
             @@user_id = session[:user_id]
-            puts 'Success'
+            response = {response: 'Success'}
+            response.to_json
         else
-            puts 'Fail'
+          response = {response: 'Fail'}
+          response.to_json
         end
     end
 
@@ -118,6 +121,7 @@ class ApplicationController < Sinatra::Base
     response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
     response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
     200
   end
 

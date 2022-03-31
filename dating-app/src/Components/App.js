@@ -18,19 +18,26 @@ function App() {
       password: e.target.password.value
     }
 
-    console.log(JSON.stringify(loginInfo))
-
-
       fetch('http://localhost:9292/login', {
         method: 'POST',
-        // mode: 'no-cors', 
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(loginInfo)
       })
       .then(resp => resp.json())
-      .then(result => console.log(result))
+      .then(result => renderLoginState(result))
+
+      function renderLoginState(result) {
+        let {response} = result
+
+        if (response === 'Success') {
+          setIsLoggedIn(true)
+        }
+        else {
+          window.alert(`We couldn't find your account. Please check your password and try again!`)
+        }
+      }
       
     }
 
