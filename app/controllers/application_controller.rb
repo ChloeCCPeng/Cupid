@@ -113,7 +113,6 @@ class ApplicationController < Sinatra::Base
             end
             filtered_users.to_json(include: [:likers, :liked])
         end
-        binding.pry
       end
 
 

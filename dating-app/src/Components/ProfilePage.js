@@ -29,7 +29,7 @@ function ProfilePage() {
           <Link to="/"><img src={BackArrow} alt="back arrow" className="back-arrow" style={{left: "30px", top: "20px"}} /></Link>
             <div className="flex content-center justify-center">
                 <div className="w-6/12 flex flex-col justify-center">
-                    <img className="h-96 object-none mx-auto" src={picture} alt={name + ' picture'} />
+                    <img className="h-96 object-fill mx-auto" src={picture} alt={name + ' picture'} />
                     <h1 className="text-center">{name}</h1>
                     <h3 className="text-center">Age: {age}</h3>
                 </div>

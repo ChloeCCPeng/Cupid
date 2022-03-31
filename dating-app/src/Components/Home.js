@@ -5,10 +5,9 @@ import UserList from './UserList'
 function Home() {
 
   const [userData, setUserData] = useState([])
+  const userID = localStorage.getItem('User ID')
 
   useEffect(() => {
-
-    const userID = localStorage.getItem('User ID')
 
     fetch(`http://localhost:9292/profile/${userID}`, {
       headers : { 
@@ -25,10 +24,10 @@ function Home() {
     <div className="App">
       <div className="container mx-auto">
         <div className="my-8">
-            <NavBar />
+            <NavBar userData={userData}/>
         </div>
         <div >
-            <UserList userData={userData} />
+            <UserList userData={userData} userID={userID}/>
         </div>       
       </div>
     </div>
