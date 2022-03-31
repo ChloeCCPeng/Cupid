@@ -1,6 +1,6 @@
 function UserCard() {
     return (
-        <div className="h-64" style={{background: "blue"}}>
+        <div className="h-64">
             
         </div>
 
