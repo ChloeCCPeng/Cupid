@@ -13,5 +13,16 @@ class User < ActiveRecord::Base
     has_many :liking_users, foreign_key: :liked_id, class_name: "Match"
     has_many :likers, through: :liking_users
 
+    def update_user (attr)
+        update(attr)
+    end
 
+    def delete_user (id)
+        user = User.find(id)
+        user.destroy
+    end
+
+    def self.most_popular
+        self.all.order(:liked)
+    end
 end
