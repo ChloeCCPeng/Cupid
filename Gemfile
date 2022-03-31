@@ -12,6 +12,8 @@ gem "sinatra-activerecord"
 # https://github.com/ruby/rake
 gem "rake"
 
+gem 'sinatra-cross_origin'
+
 # Provides functionality to interact with a SQLite3 database
 # https://github.com/sparklemotion/sqlite3-ruby
 gem "sqlite3", "~> 1.4"
@@ -20,6 +22,10 @@ gem "sqlite3", "~> 1.4"
 # https://github.com/jarmo/require_all
 gem "require_all"
 
+# Rack middleware. Used specifically for parsing the request body into params.
+# https://github.com/rack/rack-contrib
+gem "rack-contrib", "~> 2.3"
+
 gem "rack", "~> 2.2"
 
 gem "rack-test", "~> 1.1", group: :test
@@ -27,5 +33,7 @@ gem "rack-test", "~> 1.1", group: :test
 gem "webrick", "~> 1.7"
 
 gem "pry"
+
+gem 'bcrypt'
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

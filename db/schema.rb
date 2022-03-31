@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_28_232212) do
+ActiveRecord::Schema.define(version: 2022_03_29_193338) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "liked_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2022_03_28_232212) do
     t.integer "age"
     t.string "picture"
     t.string "location"
+    t.string "password_digest"
+    t.string "username"
   end
 
 end

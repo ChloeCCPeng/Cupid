@@ -3,8 +3,13 @@ class Match < ActiveRecord::Base
     belongs_to :liker, class_name: "User"
     belongs_to :liked, class_name: "User"
 
+
     def unmatch(id)
         match = Match.find(id)
         match.destroy
+
+    def delete_match
+        
+
     end
 end
