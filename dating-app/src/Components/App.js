@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
+import ProfilePage from './ProfilePage'
 import CreateAccount from './CreateAccount'
 
 
@@ -11,7 +12,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    setIsLoggedIn(window.localStorage.getItem('Log In Status'));
+    let stringValue = "true"; 
+    setIsLoggedIn(window.localStorage.getItem('Log In Status') === stringValue);
   }, [])
 
   useEffect(()=>{
@@ -65,9 +67,13 @@ function App() {
         <Route exact path="/create-account">
           <CreateAccount />
         </Route>
+        <Route exact path="/profile">
+          <ProfilePage />
+        </Route>
         <Route exact path="/">
           {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
         </Route>
+        <Route path="/:id" children={<ProfilePage />} />
       </Switch>
       </div>
     </Router>

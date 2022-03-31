@@ -17,7 +17,7 @@ function Home() {
        }
     })
     .then(resp => resp.json())
-    .then(userData => console.log(userData))
+    .then(userData => setUserData(userData))
 
   },[])
 
@@ -28,7 +28,7 @@ function Home() {
             <NavBar />
         </div>
         <div >
-            <UserList />
+            <UserList userData={userData} />
         </div>       
       </div>
     </div>

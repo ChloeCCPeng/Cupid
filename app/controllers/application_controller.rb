@@ -39,9 +39,13 @@ class ApplicationController < Sinatra::Base
     match.to_json
     end
 
-  get '/user/:id' do
-    user = User.find(params[:id])
-    user.to_json
+  #gets users for specific user
+  get '/users/:id' do
+    logged_in_user = User.find(params[:id])
+    preferenced_users = User.where('preference = ?', logged_in_user.preference) 
+    filtered_users = preferenced_users.excluding(logged_in_user).excluding(logged_in_user.liked)
+    
+    filtered_users.to_json
   end
 
     patch '/user/:id' do 

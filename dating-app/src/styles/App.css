@@ -3,6 +3,11 @@ h1 {
   font-size: 48px;
   font-weight:300;
 }
+h2 {
+  font-size: 32px;
+  font-weight:700;
+}
+
 h3 {
   font-size: 26px;
   font-weight:700;
@@ -10,4 +15,8 @@ h3 {
 
 img.back-arrow {
   position: absolute;
+  transition: 0.3s;
+}
+img.back-arrow:hover {
+  transform: scale(.93)
 }
