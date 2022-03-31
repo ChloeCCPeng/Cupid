@@ -39,10 +39,14 @@ function App() {
       .then(result => renderLoginState(result))
 
       function renderLoginState(result) {
-        let {response} = result
+
+        console.log(result)
+
+        let {response, current_user_id} = result
 
         if (response === 'Success') {
           setIsLoggedIn(true)
+          localStorage.setItem('User ID', current_user_id)
         }
         else {
           window.alert(`We couldn't find your account. Please check your password and try again!`)
