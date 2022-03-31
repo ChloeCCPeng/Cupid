@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
@@ -7,6 +7,14 @@ import Login from './Login'
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    setIsLoggedIn(window.localStorage.getItem('Log In Status'));
+  }, [])
+
+  useEffect(()=>{
+      localStorage.setItem('Log In Status', isLoggedIn)
+  },[isLoggedIn])
 
   function handleLogin(e) {
 
@@ -46,10 +54,10 @@ function App() {
       <div className="App">
       <Switch>
       <Route exact path="/login">
-          <Login handleLogin={handleLogin} />
+        {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
         </Route>
         <Route exact path="/">
-          <Home />
+          {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
         </Route>
       </Switch>
       </div>

@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
       set :default_content_type, 'application/json'
 
 
+
   get '/matches/' do
     users = Match.all
     users.to_json
