@@ -59,10 +59,10 @@ function CreateAccount() {
                 <input type="number" id="age" name="age" className="border-2 border-slate-500/100 text-center mb-2"/>
                 <label htmlFor="preference">Gender Preference:</label>
                 <select name="preference" id="preference" className="border-2 border-slate-500/100 text-center mb-2">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="nonbinary">Nonbinary</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Nonbinary">Nonbinary</option>
+                    <option value="Other">Other</option>
                 </select>
                 <label htmlFor="Bio">Bio:</label>
                 <textarea type="textarea" id="bio" name="bio" className="border-2 border-slate-500/100 text-center mb-2"/>
