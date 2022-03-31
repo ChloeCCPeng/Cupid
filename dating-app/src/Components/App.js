@@ -4,11 +4,13 @@ import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
+import Profile from './Profile'
 
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [profile, setProfile] = useState("")
 
   useEffect(() => {
     setIsLoggedIn(window.localStorage.getItem('Log In Status'));
@@ -55,12 +57,23 @@ function App() {
       
     }
 
+    useEffect(() => {
+      fetch('http://localhost:9292/profile')
+      .then((response) => response.json())
+      .then((data) => setProfile(data))
+    },[]);
+  
+    // function profileRender ()
+
   return (
     <Router>
       <div className="App">
       <Switch>
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
         <Route exact path="/create-account">
           <CreateAccount />
