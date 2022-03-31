@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2022_03_29_193338) do
     t.integer "age"
     t.string "picture"
     t.string "location"
-    t.string "password_digest"
     t.string "username"
+    t.string "password_digest"
   end
 
 end
