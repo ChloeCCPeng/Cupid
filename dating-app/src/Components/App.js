@@ -4,7 +4,7 @@ import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
-import Profile from './Profile'
+import ProfileCard from './ProfileCard'
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [profile, setProfile] = useState("")
 
   useEffect(() => {
-    setIsLoggedIn(window.localStorage.getItem('Log In Status'));
+    setIsLoggedIn(window.localStorage.getItem('Log In Status'));1
   }, [])
 
   useEffect(()=>{
@@ -62,8 +62,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProfile(data))
     },[]);
-  
-    // function profileRender ()
 
   return (
     <Router>
@@ -72,9 +70,9 @@ function App() {
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
         </Route>
-        <Route exact path="/profile">
-          <Profile />
-        </Route>
+        {/* <Route exact path="/profileCard">
+          <ProfileCard profile={profile}/>
+        </Route> */}
         <Route exact path="/create-account">
           <CreateAccount />
         </Route>
