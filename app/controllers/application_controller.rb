@@ -49,16 +49,19 @@ class ApplicationController < Sinatra::Base
     end
 
     post '/users/' do
-        users = User.create(
+      # binding.pry
+        user = User.create(
+          username: params[:username],
+          password: params[:password],
           name: params[:name],
           bio: params[:bio],
           hobby: params[:hobby],
           preference: params[:preference],
-          age: params[:age],
+          age: params[:age].to_i,
           picture: params[:picture],
           location: params[:location],
         )
-        users.to_json
+          user.to_json
       end
 
       post '/login' do
