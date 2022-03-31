@@ -5,11 +5,13 @@ import Home from './Home'
 import Login from './Login'
 import ProfilePage from './ProfilePage'
 import CreateAccount from './CreateAccount'
+import ProfileCard from './ProfileCard'
 
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [profile, setProfile] = useState("")
 
   useEffect(() => {
     let stringValue = "true"; 
@@ -57,6 +59,12 @@ function App() {
       
     }
 
+    useEffect(() => {
+      fetch('http://localhost:9292/profile')
+      .then((response) => response.json())
+      .then((data) => setProfile(data))
+    },[]);
+
   return (
     <Router>
       <div className="App">
@@ -64,6 +72,9 @@ function App() {
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
         </Route>
+        {/* <Route exact path="/profileCard">
+          <ProfileCard profile={profile}/>
+        </Route> */}
         <Route exact path="/create-account">
           <CreateAccount />
         </Route>
