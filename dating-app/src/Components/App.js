@@ -4,6 +4,7 @@ import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
+import Profile from './Profile'
 
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
       <Switch>
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
         <Route exact path="/create-account">
           <CreateAccount />
