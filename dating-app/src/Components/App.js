@@ -51,8 +51,8 @@ function App() {
         let {response, current_user_id} = result
 
         if (response === 'Success') {
-          setIsLoggedIn(true)
           localStorage.setItem('User ID', current_user_id)
+          setIsLoggedIn(true)
         }
         else {
           window.alert(`We couldn't find your account. Please check your password and try again!`)
