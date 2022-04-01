@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import HomepageImage from '../assets/29-299357_romantic-love-couple-png-download-this-love-two.png'
+import HomepageImage from '../assets/hero.jpeg'
 
 
 
