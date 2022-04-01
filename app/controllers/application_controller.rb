@@ -43,10 +43,8 @@ class ApplicationController < Sinatra::Base
     end
 
     uniq = duplicate_value(all)
-
-    binding.pry
     
-    user.to_json()
+    uniq.to_json()
     end
 
   #gets users for specific user
@@ -73,7 +71,6 @@ class ApplicationController < Sinatra::Base
     end
 
     post '/users/' do
-      # binding.pry
         user = User.create(
           username: params[:username],
           password: params[:password],

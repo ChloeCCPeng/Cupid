@@ -23,7 +23,7 @@ function UserList() {
 
     return (
     <div className="grid gap-4 grid-cols-4">
-        {unmatched.map(user => <UserCard user={user}/>)}
+        {unmatched.map(user => <UserCard user={user} key={user.id}/>)}
     </div>
 
     );
