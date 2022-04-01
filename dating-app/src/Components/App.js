@@ -5,7 +5,7 @@ import Home from './Home'
 import Login from './Login'
 import ProfilePage from './ProfilePage'
 import CreateAccount from './CreateAccount'
-import ProfileCard from './ProfileCard'
+import UserPage from './UserPage'
 import Matches from './Matches'
 
 
@@ -89,7 +89,7 @@ function App() {
         <Route exact path="/matches">
           {isLoggedIn ? <Matches /> : <Redirect to="/login"/>}
         </Route>
-        <Route path="/:id" children={<ProfilePage />} />
+        <Route path="/:id" children={<UserPage />} />
       </Switch>
       </div>
     </Router>
