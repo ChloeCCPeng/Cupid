@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory  } from "react-router-dom";
 import BackArrow from '../assets/Downward Arrow.svg'
 import Yes from '../assets/Yes.svg'
 import No from '../assets/No.svg'
@@ -11,6 +11,7 @@ function UserPage() {
 
     let { id } = useParams();
     const userID = localStorage.getItem('User ID')
+    let history = useHistory()
 
     const [profile, setProfile] = useState([])
 
@@ -42,7 +43,11 @@ function UserPage() {
             body: JSON.stringify(bundleInfo)
           })
           .then(resp => resp.json())
-          .then(result => console.log(result))
+          .then(result => renderResult(result))
+
+          function renderResult(result) {
+            history.push("/")
+          }
 
       }
 
