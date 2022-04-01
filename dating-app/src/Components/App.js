@@ -67,14 +67,11 @@ function App() {
       <Route exact path="/login">
         {isLoggedIn ? <Redirect to="/"/> : <Login handleLogin={handleLogin} />}
         </Route>
-        {/* <Route exact path="/profileCard">
-          <ProfileCard profile={profile}/>
-        </Route> */}
         <Route exact path="/create-account">
           <CreateAccount />
         </Route>
         <Route exact path="/profile">
-          <ProfilePage />
+          {isLoggedIn ? <ProfilePage /> : <Redirect to="/login"/>}
         </Route>
         <Route exact path="/">
           {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
@@ -82,7 +79,7 @@ function App() {
         <Route exact path="/matches">
           {isLoggedIn ? <Matches /> : <Redirect to="/login"/>}
         </Route>
-        <Route path="/:id" children={<UserPage />} />
+        <Route path="/:id" children={ isLoggedIn ? <UserPage /> : <Redirect to="/login"/>} />
       </Switch>
       </div>
     </Router>
