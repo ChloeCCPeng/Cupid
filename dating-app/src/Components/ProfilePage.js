@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import BackArrow from '../assets/Downward Arrow.svg'
 
 
-function ProfilePage() {
+function ProfilePage({handleLogout}) {
 
     const [profile, setProfile] = useState([])
 
@@ -43,6 +43,7 @@ function ProfilePage() {
                         <p>{hobby}</p>
                         <h2 className="mt-3">Bio</h2>
                         <p>{bio}</p>
+                        <button onClick={() => handleLogout()} type="button" className="mt-10 p-3 bg-red-700 text-white mt-5 cursor-pointer hover:bg-red-900 duration-200" style={{maxWidth: "200px"}}>Log Out</button>
                     </div>  
                 </div>
             </div>

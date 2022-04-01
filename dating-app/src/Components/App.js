@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from "react-router-dom";
 import '../styles/App.css';
 import Home from './Home'
 import Login from './Login'
@@ -13,6 +13,7 @@ import Matches from './Matches'
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  let history = useHistory();
 
   useEffect(() => {
     let stringValue = "true"; 
@@ -60,6 +61,12 @@ function App() {
       
     }
 
+    function handleLogout() {
+      setIsLoggedIn(false)
+      localStorage.removeItem('User ID')
+      history.push("/login")
+    }
+
   return (
     <Router>
       <div className="App">
@@ -71,7 +78,7 @@ function App() {
           <CreateAccount />
         </Route>
         <Route exact path="/profile">
-          {isLoggedIn ? <ProfilePage /> : <Redirect to="/login"/>}
+          {isLoggedIn ? <ProfilePage handleLogout={handleLogout}/> : <Redirect to="/login"/>}
         </Route>
         <Route exact path="/">
           {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
