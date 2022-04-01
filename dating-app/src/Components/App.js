@@ -6,6 +6,8 @@ import Login from './Login'
 import ProfilePage from './ProfilePage'
 import CreateAccount from './CreateAccount'
 import ProfileCard from './ProfileCard'
+import Matches from './Matches'
+
 
 
 function App() {
@@ -83,6 +85,9 @@ function App() {
         </Route>
         <Route exact path="/">
           {isLoggedIn ? <Home /> : <Redirect to="/login"/>}
+        </Route>
+        <Route exact path="/matches">
+          {isLoggedIn ? <Matches /> : <Redirect to="/login"/>}
         </Route>
         <Route path="/:id" children={<ProfilePage />} />
       </Switch>

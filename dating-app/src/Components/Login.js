@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import HomepageImage from 'https://www.pikpng.com/pngl/m/29-299357_romantic-love-couple-png-download-this-love-two.png'
+import HomepageImage from '../assets/29-299357_romantic-love-couple-png-download-this-love-two.png'
 
 
 
@@ -14,7 +14,7 @@ function Login({handleLogin}) {
       <div className="container mx-auto ">
         <div className="my-8 flex flex-row gap-x-32 flex content-center justify-center">
             <div>
-                <img src={HomepageImage} alt="Couple kissing" style={{maxHeight: "90vh", maxWidth: "50vh"}}/>
+                <img src={HomepageImage}  alt="Couple kissing" style={{maxHeight: "90vh", maxWidth: "50vh"}}/>
             </div>
             <div className="justify-center flex flex-col align-center text-left max-w-3xl" >
                 <h3>Cupid 💘 </h3>

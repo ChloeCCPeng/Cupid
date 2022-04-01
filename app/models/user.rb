@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     def self.most_popular
         self.all.order(:liked)
     end
+
+    def matches
+        binding.pry
+    end
 end

@@ -34,9 +34,19 @@ class ApplicationController < Sinatra::Base
     users.to_json
   end
 
+  #find matches for specific user
   get '/match/:id' do
-    match = Match.find(params[:id])
-    match.to_json
+    user = User.find_by_id(params[:id])
+    all = (user.likers.uniq + user.liked.uniq)
+    def duplicate_value(all)
+      all.select{|v| all.count(v) > 1}.uniq
+    end
+
+    uniq = duplicate_value(all)
+
+    binding.pry
+    
+    user.to_json()
     end
 
   #gets users for specific user
@@ -113,6 +123,11 @@ class ApplicationController < Sinatra::Base
             end
             filtered_users.to_json(include: [:likers, :liked])
         end
+      end
+
+      get '/user/:id' do
+        user = User.find(params[:id])
+        user.to_json(include: [:likers, :liked])
       end
 
 
