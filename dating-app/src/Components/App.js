@@ -13,7 +13,6 @@ import Matches from './Matches'
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [profile, setProfile] = useState("")
 
   useEffect(() => {
     let stringValue = "true"; 
@@ -60,12 +59,6 @@ function App() {
       }
       
     }
-
-    useEffect(() => {
-      fetch('http://localhost:9292/profile')
-      .then((response) => response.json())
-      .then((data) => setProfile(data))
-    },[]);
 
   return (
     <Router>

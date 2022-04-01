@@ -10,7 +10,7 @@ function UserCard({user}) {
 
     return (
         <Link to={link} >
-            <div className="h-64 relative">
+            <div className="h-64 relative hover-shrink">
                 <div className="h-64 overflow-hidden">
                     <img src={picture} alt={'Picture of ' + {name}} />
                 </div>

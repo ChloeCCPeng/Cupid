@@ -12,6 +12,13 @@ body {
     overflow-x: hidden;
 }
 
+.hover-shrink {
+  transition: 0.3s;
+}
+.hover-shrink:hover {
+  transform: scale(0.93)
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
