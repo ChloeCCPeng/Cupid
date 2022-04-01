@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
-    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS, PATCH"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
     response.headers["Access-Control-Request-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
     response.headers['Access-Control-Max-Age'] = '86400'
@@ -50,10 +50,21 @@ class ApplicationController < Sinatra::Base
   #gets users for specific user
   get '/users/:id' do
     logged_in_user = User.find(params[:id])
-    preferenced_users = User.where('preference = ?', logged_in_user.preference) 
+    preferenced_users = User.where('preference = ?', logged_in_user.gender).where('gender = ?', logged_in_user.preference)
     filtered_users = preferenced_users.excluding(logged_in_user).excluding(logged_in_user.liked)
     
     filtered_users.to_json
+  end
+
+  #sets like
+  post '/like/' do 
+
+    Match.create(liked_id: params[:liked_id], liker_id: params[:liker_id])
+
+    liker = User.find_by_id(params[:liker_id])
+    liked = User.find_by_id(params[:liker_id])
+
+    liker.likers.include?(liked).to_json
   end
 
     patch '/user/:id' do 
@@ -152,7 +163,7 @@ class ApplicationController < Sinatra::Base
 
   # Need this for CORS
   options "*" do
-    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS"
+    response.headers["Allow"] = "GET, PUT, POST, DELETE, OPTIONS, PATCH"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
     response.headers["Access-Control-Request-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token, Set-Cookie, *"
     response.headers["Access-Control-Allow-Origin"] = "*"

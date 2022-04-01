@@ -10,6 +10,7 @@ import No from '../assets/No.svg'
 function UserPage() {
 
     let { id } = useParams();
+    const userID = localStorage.getItem('User ID')
 
     const [profile, setProfile] = useState([])
 
@@ -26,6 +27,25 @@ function UserPage() {
     
       },[])
 
+      function likedUser() {
+
+        const bundleInfo = {
+          liker_id: userID,
+          liked_id: id
+        }
+    
+          fetch('http://localhost:9292/like/', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bundleInfo)
+          })
+          .then(resp => resp.json())
+          .then(result => console.log(result))
+
+      }
+
       const {age, bio, hobby, location, name, picture, preference} = profile
     
     return (
@@ -37,7 +57,7 @@ function UserPage() {
                     <h1 className="text-center">{name}</h1>
                     <h3 className="text-center">Age: {age}</h3>
                     <div className="mx-auto mt-5">
-                        <button className="mx-2 "><img className="hover-shrink" src={Yes} alt="yes button" /></button>
+                        <button onClick={() => likedUser()} className="mx-2 "><img className="hover-shrink" src={Yes} alt="yes button" /></button>
                         <button className="mx-2"><img className="hover-shrink" src={No} alt="no button" /></button>
                     </div>
                 </div>
