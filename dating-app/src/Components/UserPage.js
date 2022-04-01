@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { useParams, Link } from "react-router-dom";
 import BackArrow from '../assets/Downward Arrow.svg'
+import Yes from '../assets/Yes.svg'
+import No from '../assets/No.svg'
+
+
 
 
 function UserPage() {
@@ -32,6 +36,10 @@ function UserPage() {
                     <img className="h-96 object-fill mx-auto" src={picture} alt={name + ' picture'} />
                     <h1 className="text-center">{name}</h1>
                     <h3 className="text-center">Age: {age}</h3>
+                    <div className="mx-auto mt-5">
+                        <button className="mx-2 "><img className="hover-shrink" src={Yes} alt="yes button" /></button>
+                        <button className="mx-2"><img className="hover-shrink" src={No} alt="no button" /></button>
+                    </div>
                 </div>
                 <div className="w-6/12 bg-sky-200 min-h-screen p-12 flex flex-col justify-center content-center">
                     <div className="m-auto"> 
