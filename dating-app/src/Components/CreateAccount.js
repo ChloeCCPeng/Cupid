@@ -16,6 +16,7 @@ function CreateAccount() {
             location: e.target.location.value,
             age: e.target.age.value,
             preference: e.target.preference.value,
+            gender: e.target.gender.value,
             bio: e.target.bio.value,
             picture: e.target.picture.value
         }
@@ -33,6 +34,8 @@ function CreateAccount() {
           .then(result => console.log(result))
 
           window.alert(`Account Created Successfully!`)
+
+          e.target.reset()
 
           }
 
@@ -57,6 +60,13 @@ function CreateAccount() {
                 <input type="picture" id="picture" name="picture" className="border-2 border-slate-500/100 text-center mb-2"/>
                 <label htmlFor="Age">Age:</label>
                 <input type="number" id="age" name="age" className="border-2 border-slate-500/100 text-center mb-2"/>
+                <label htmlFor="gender">Gender:</label>
+                <select name="gender" id="gender" className="border-2 border-slate-500/100 text-center mb-2">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Nonbinary">Nonbinary</option>
+                    <option value="Other">Other</option>
+                </select>
                 <label htmlFor="preference">Gender Preference:</label>
                 <select name="preference" id="preference" className="border-2 border-slate-500/100 text-center mb-2">
                     <option value="Male">Male</option>

@@ -51,7 +51,28 @@ function UserPage() {
 
       }
 
+      function dislikedUser() {
+
+        const bundleInfo = {
+          not_interested_id: userID,
+          user_id: id
+        }
+    
+          fetch('http://localhost:9292/dislike/', {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bundleInfo)
+          })
+          .then(resp => resp.json())
+          .then(result => result)
+
+          history.push("/")
+      }
+
       const {age, bio, hobby, location, name, picture, preference} = profile
+
     
     return (
         <div className="flex flex-col content-center justify-center min-h-screen">
@@ -61,9 +82,9 @@ function UserPage() {
                     <img className="h-96 object-fill mx-auto" src={picture} alt={name + ' picture'} />
                     <h1 className="text-center">{name}</h1>
                     <h3 className="text-center">Age: {age}</h3>
-                    <div className="mx-auto mt-5">
+                    <div className="mx-auto mt-5" >
                         <button onClick={() => likedUser()} className="mx-2 "><img className="hover-shrink" src={Yes} alt="yes button" /></button>
-                        <button className="mx-2"><img className="hover-shrink" src={No} alt="no button" /></button>
+                        <button onClick={() => dislikedUser()} className="mx-2"><img className="hover-shrink" src={No} alt="no button" /></button>
                     </div>
                 </div>
                 <div className="w-6/12 bg-sky-200 min-h-screen p-12 flex flex-col justify-center content-center">

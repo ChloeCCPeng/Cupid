@@ -32,7 +32,7 @@ function Matches () {
             <h1>Matches</h1>
             {matchData.length === 0 ? <h3>No matches were found :(</h3> : null }
             <div className="grid gap-4 grid-cols-4">
-                {matchData.map(user => <UserCard user={user} key={user.id}/>)}
+                {matchData.map(user => <UserCard user={user} key={user.id} />)}
             </div>
         </div>
         </div>

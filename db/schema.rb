@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_31_220147) do
+ActiveRecord::Schema.define(version: 2022_04_01_062240) do
+
+  create_table "dislikes", force: :cascade do |t|
+    t.integer "disliked_id"
+    t.integer "disliker_id"
+  end
 
   create_table "matches", force: :cascade do |t|
     t.integer "liked_id"

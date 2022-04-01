@@ -51,7 +51,7 @@ class ApplicationController < Sinatra::Base
   get '/users/:id' do
     logged_in_user = User.find(params[:id])
     preferenced_users = User.where('preference = ?', logged_in_user.gender).where('gender = ?', logged_in_user.preference)
-    filtered_users = preferenced_users.excluding(logged_in_user).excluding(logged_in_user.liked)
+    filtered_users = preferenced_users.excluding(logged_in_user).excluding(logged_in_user.liked).excluding(logged_in_user.dislikers)
     
     filtered_users.to_json
   end
@@ -66,6 +66,11 @@ class ApplicationController < Sinatra::Base
 
     liker.likers.include?(liked).to_json
   end
+
+    #sets dislike
+    post '/dislike/' do 
+      Dislike.create(disliked_id: params[:not_interested_id], disliker_id: params[:user_id])  
+    end
 
     patch '/user/:id' do 
       user = User.find(params[:id])
@@ -89,6 +94,7 @@ class ApplicationController < Sinatra::Base
           bio: params[:bio],
           hobby: params[:hobby],
           preference: params[:preference],
+          gender: params[:gender],
           age: params[:age].to_i,
           picture: params[:picture],
           location: params[:location],

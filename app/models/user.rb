@@ -13,6 +13,16 @@ class User < ActiveRecord::Base
         has_many :liking_users, foreign_key: :liked_id, class_name: "Match"
         has_many :likers, through: :liking_users
 
+
+         #this user can have many followed users
+        has_many :disliked_users, foreign_key: :disliker_id, class_name: "Dislike"
+        has_many :disliked, through: :disliked_users
+        
+        #this users can also like many users
+        has_many :disliking_users, foreign_key: :disliked_id, class_name: "Dislike"
+        has_many :dislikers, through: :disliking_users
+
+
     def update_user (attr)
         update(attr)
     end
