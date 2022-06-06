@@ -1,9 +1,6 @@
 # Phase 3 Project - Dating App
 *Created by: Chloe Peng and Evan Chernicky* 
 
-# Real Estate App
-*Created by: Chloe Peng* 
-
 # Table of Contents 
 *   [Introduction](#introduction)
 *   [Features](#features)
@@ -13,11 +10,10 @@
 
 
 #   Introduction
-A Real Estate platform that helps buyers purchase houses directly from homeowners
+A web application that helps users find their matches
 
 
 #   Features 
- - List item
  - User Authentification
  - User Creation
  - Ability to see potential matches based on user preferences
