@@ -1,5 +1,5 @@
 # Phase 3 Project - Dating App
-*Created by: Chloe Peng, Evan Chernicky* 
+*Created by: Chloe Peng and Evan Chernicky* 
 
 # Real Estate App
 *Created by: Chloe Peng* 
