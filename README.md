@@ -45,10 +45,5 @@ npm start --prefix client
 rackup config.ru
 ```
 
-- To kill postgreSQL: 
-```
-sudo lsof -i :5432
-sudo pkill -u postgres
-```
 
 
