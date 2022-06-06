@@ -1,5 +1,5 @@
 # Phase 3 Project - Dating App
-*Created by: Chloe Peng, Evan Chernicky, Becca Rozmajzl* 
+*Created by: Chloe Peng, Evan Chernicky* 
 
 ## Features
  - List item
