@@ -1,4 +1,4 @@
-# Cupid - A web application that helps users find their matches
+# Cupid - A web app that helps users find their matches
 *Created by: Chloe Peng and Evan Chernicky* 
 
 
