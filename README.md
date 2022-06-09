@@ -1,11 +1,11 @@
-# Cupid
+# Cupid - A web application that helps users find their matches
 *Created by: Chloe Peng and Evan Chernicky* 
 
 # Table of Contents 
+*   [Project Demo](#click-for-project-demo)
 *   [Introduction](#introduction)
 *   [Features](#features)
 *   [Wireframe](#wireframe)
-*   [Project Demo](#project-demo)
 *   [Setup](#setup)
 
 
@@ -27,10 +27,6 @@ https://xd.adobe.com/view/0d4dbe1f-e786-4322-903e-3de170d041a3-581e/
 <img width="1270" alt="image" src="https://user-images.githubusercontent.com/61214246/172076769-856687bb-32d5-464b-b28d-ace5c6b31544.png">
 <img width="1270" alt="image" src="https://user-images.githubusercontent.com/61214246/172076793-62c266b0-1429-4630-a726-6ae114f32bc7.png">
 <img width="1271" alt="image" src="https://user-images.githubusercontent.com/61214246/172076813-7025d1cc-82eb-4b29-8e17-21968bb3818e.png">
-
-
-#   Project Demo 
-
 
 #   Setup
 
