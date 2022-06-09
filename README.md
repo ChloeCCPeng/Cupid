@@ -1,4 +1,4 @@
-# Phase 3 Project - Dating App
+# Cupid
 *Created by: Chloe Peng and Evan Chernicky* 
 
 # Table of Contents 
