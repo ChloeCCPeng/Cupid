@@ -1,6 +1,7 @@
 # Cupid - A web application that helps users find their matches
 *Created by: Chloe Peng and Evan Chernicky* 
 
+
 # Table of Contents 
 *   [Project Demo](#click-for-project-demo)
 *   [Introduction](#introduction)
